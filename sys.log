@@ -1,0 +1,11 @@
+INFO: 2025/11/03 21:51:09 service.go:36: Signup unsuccessful
+ERROR: 2025/11/03 21:51:12 service.go:42: Invalid Input
+ERROR: 2025/11/03 21:51:15 service.go:42: Invalid Input
+INFO: 2025/11/03 21:51:18 service.go:36: Email Verified successfully
+INFO: 2025/11/03 21:51:21 service.go:36: Signup unsuccessful
+INFO: 2025/11/03 21:51:24 service.go:36: Signup unsuccessful
+ERROR: 2025/11/03 21:51:27 service.go:42: Internal Server Error
+INFO: 2025/11/03 21:51:30 service.go:36: Login successful
+ERROR: 2025/11/03 21:51:33 service.go:42: Not Authorised
+ERROR: 2025/11/03 21:51:36 service.go:42: Invalid Input
+ERROR: 2025/11/03 21:51:39 service.go:42: Invalid Request
