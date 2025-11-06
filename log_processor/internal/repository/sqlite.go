@@ -36,6 +36,11 @@ func (s *SQLiteStorage) GetLogsByLevel(level string) ([]models.LogEntry, error) 
 	return logs, err
 }
 
+func (s *SQLiteStorage) GetAllLogs() ([]models.LogEntry, error) {
+	var logs []models.LogEntry
+	err := s.db.Find(&logs).Error
+	return logs, err
+}
 // Close closes the underlying DB connection
 func (s *SQLiteStorage) Close() error {
 	sqlDB, err := s.db.DB()

@@ -9,7 +9,7 @@ import (
 
 func simulate_logging(){
 
-	log_file_name:="../sys.log"
+	log_file_name:="./log/sys.log"
 	logger,err:=Service.NewLogger(log_file_name)
 	if(err!=nil){
 		fmt.Println("Error During Logger creation:",err)

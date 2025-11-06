@@ -1,45 +1,68 @@
 package message_receiver
 
 import (
-    "context"
-    "fmt"
-    "log"
-    "github.com/segmentio/kafka-go"
+	"context"
+	"fmt"
+	"log"
+	"sync"
+    "os"
+	"github.com/segmentio/kafka-go"
 )
 
-// KafkaReceiver handles reading messages from Kafka
 type KafkaReceiver struct {
-    topicName string
-    reader    *kafka.Reader
+	topicName string
+	reader    *kafka.Reader
+	cancel    context.CancelFunc
 }
 
-// ReceiveMessage continuously reads and prints messages
-func (kr *KafkaReceiver) ReceiveMessage(ch chan<-string ) error {
-    for {
-        msg, err := kr.reader.ReadMessage(context.Background())
-        if err != nil {
-            fmt.Printf("Consumer error: %v\n", err)
-            continue
-        }
-        ch<-string(msg.Value)
-        // fmt.Printf("Received log: %s\n", string(msg.Value))
-    }
+func (kr *KafkaReceiver) ReceiveMessage(ch chan<- string, wg *sync.WaitGroup) {
+	defer func() {
+		fmt.Println("closing channel from receiver")
+		close(ch)
+		wg.Done()
+	}()
+
+	ctx, cancel := context.WithCancel(context.Background())
+	kr.cancel = cancel
+
+	for {
+		msg, err := kr.reader.ReadMessage(ctx)
+		if err != nil {
+			if ctx.Err() != nil {
+				fmt.Println("Kafka reader stopped (context canceled)")
+				return
+			}
+			fmt.Printf("Consumer error: %v\n", err)
+			continue
+		}
+		fmt.Printf("Received log: %s\n", msg.Value)
+		ch <- string(msg.Value)
+	}
 }
 
-// NewKafkaReceiver initializes a KafkaReceiver with a Kafka reader
+func (kr *KafkaReceiver) StopReceiver() {
+	fmt.Println("Stopping receiver...")
+	if kr.cancel != nil {
+		kr.cancel()
+	}
+	kr.reader.Close()
+}
+
 func NewKafkaReceiver(topicName string) *KafkaReceiver {
-    reader := kafka.NewReader(kafka.ReaderConfig{
-        Brokers:  []string{"localhost:9092"},
-        Topic:    topicName,
-        GroupID:  "log_processor_group",
-        MinBytes: 10e3,  // 10KB
-        MaxBytes: 10e6,  // 10MB
-    })
+    brokers := []string{os.Getenv("KAFKA_BROKER")}
 
-    log.Printf("Kafka consumer initialized for topic: %s\n", topicName)
+	reader := kafka.NewReader(kafka.ReaderConfig{
+		Brokers:  brokers,
+		Topic:    topicName,
+		GroupID:  "log_processor_group",
+		MinBytes: 10e3,
+		MaxBytes: 10e6,
+	})
 
-    return &KafkaReceiver{
-        topicName: topicName,
-        reader:    reader,
-    }
+	log.Printf("Kafka consumer initialized for topic: %s\n", topicName)
+
+	return &KafkaReceiver{
+		topicName: topicName,
+		reader:    reader,
+	}
 }

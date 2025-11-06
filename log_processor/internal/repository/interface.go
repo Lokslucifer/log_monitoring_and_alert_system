@@ -6,5 +6,6 @@ import "log_processor/internal/models"
 type LogStorage interface {
 	AddLog(entry *models.LogEntry) error
 	GetLogsByLevel(level string) ([]models.LogEntry, error)
+	GetAllLogs()([]models.LogEntry,error)
 	Close() error
 }

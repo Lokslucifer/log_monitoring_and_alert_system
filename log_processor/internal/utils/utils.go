@@ -9,10 +9,11 @@ import (
 
 )
 
-var logPattern = regexp.MustCompile(`^(?P<level>\w+): (?P<datetime>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}) (?P<file>\S+):(?P<line>\d+): (?P<message>.+)$`)
+var logPattern = regexp.MustCompile(`^(?P<level>\w+): (?P<datetime>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}) (?P<file>\S+):(?P<line>\d+): (?P<message>.+)\n$`)
 
 func ParseLogLine(line string) (*models.LogEntry, error) {
     matches := logPattern.FindStringSubmatch(line)
+    // fmt.Println("parsing-",line)
     if len(matches) == 0 {
         return nil, fmt.Errorf("invalid log format")
     }

@@ -1,0 +1,27 @@
+ERROR: 2025/11/06 07:21:33 service.go:42: Invalid Request
+ERROR: 2025/11/06 07:21:36 service.go:42: Invalid Request
+INFO: 2025/11/06 07:21:39 service.go:36: Email Verified successfully
+ERROR: 2025/11/06 07:21:42 service.go:42: Invalid Request
+INFO: 2025/11/06 07:21:45 service.go:36: Signup unsuccessful
+INFO: 2025/11/06 07:21:48 service.go:36: Signup unsuccessful
+INFO: 2025/11/06 07:28:09 service.go:36: Signup unsuccessful
+ERROR: 2025/11/06 07:28:12 service.go:42: Invalid Request
+ERROR: 2025/11/06 07:28:15 service.go:42: Not Authorised
+INFO: 2025/11/06 07:28:18 service.go:36: Signup unsuccessful
+ERROR: 2025/11/06 07:28:21 service.go:42: Invalid Input
+ERROR: 2025/11/06 07:28:24 service.go:42: Not Authorised
+ERROR: 2025/11/06 07:28:27 service.go:42: Invalid Input
+INFO: 2025/11/06 07:28:30 service.go:36: Signup unsuccessful
+INFO: 2025/11/06 07:28:33 service.go:36: Login successful
+INFO: 2025/11/06 07:28:36 service.go:36: Signup unsuccessful
+INFO: 2025/11/06 07:28:39 service.go:36: Signup unsuccessful
+ERROR: 2025/11/06 07:28:42 service.go:42: Invalid Input
+ERROR: 2025/11/06 07:28:45 service.go:42: Invalid Request
+ERROR: 2025/11/06 07:30:39 service.go:42: Invalid Input
+ERROR: 2025/11/06 07:30:42 service.go:42: Invalid Input
+INFO: 2025/11/06 07:30:45 service.go:36: Login successful
+ERROR: 2025/11/06 07:30:48 service.go:42: Internal Server Error
+ERROR: 2025/11/06 07:34:14 service.go:42: Internal Server Error
+INFO: 2025/11/06 07:34:17 service.go:36: Email Verified successfully
+ERROR: 2025/11/06 07:34:20 service.go:42: Internal Server Error
+ERROR: 2025/11/06 07:34:23 service.go:42: Internal Server Error

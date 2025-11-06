@@ -6,7 +6,7 @@ import (
 )
 
 func main(){
-	file_name:="../sys.log"
+	file_name:="./log/sys.log"
 	topic_name:="log_processor"
 	msg_sender:=message_sender.NewKafkaSender(topic_name)
 	log_collector:=Service.NewLogCollector(file_name,msg_sender)

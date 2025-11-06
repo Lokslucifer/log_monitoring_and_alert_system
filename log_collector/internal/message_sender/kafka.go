@@ -4,7 +4,7 @@ import (
     "context"
     "fmt"
     "log"
-
+    "os"
     "github.com/segmentio/kafka-go"
 )
 
@@ -31,8 +31,9 @@ func (ks *KafkaSender) SendMessage(msg string) error {
 
 // NewKafkaSender initializes and returns a KafkaSender instance
 func NewKafkaSender(topicName string) *KafkaSender {
+    brokers := []string{os.Getenv("KAFKA_BROKER")}
     writer := kafka.NewWriter(kafka.WriterConfig{
-        Brokers:  []string{"localhost:9092"},
+        Brokers:  brokers,
         Topic:    topicName,
         Balancer: &kafka.LeastBytes{}, // balances load across partitions
     })

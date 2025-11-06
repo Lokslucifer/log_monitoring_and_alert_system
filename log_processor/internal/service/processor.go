@@ -1,9 +1,11 @@
-package Service
+package service
 
 import (
 	"fmt"
 	"log_processor/internal/repository"
 	"log_processor/internal/utils"
+	"sync"
+
 )
 
 type LogProcessor struct {
@@ -12,19 +14,20 @@ type LogProcessor struct {
 
 }
 
-func NewLogProcessor(dburl string,receiver <-chan string)(*LogProcessor){
-	repo,err:=repository.NewSQLiteStorage(dburl)
-	if(err!=nil){
-		fmt.Printf("error in database initiation:%v",err)
-	}
+func NewLogProcessor(repo repository.LogStorage,receiver <-chan string)(*LogProcessor){
+
 	return &LogProcessor{repo: repo,receiver: receiver}
 }
 
-func (lp *LogProcessor)ProcessLog(){
+func (lp *LogProcessor)ProcessLog(wg *sync.WaitGroup){
+	defer wg.Done()
+	
 	for logline :=range lp.receiver{
+		// fmt.Printf("%v",logline)
 		log,err:=utils.ParseLogLine(logline)
 		if(err!=nil){
 			fmt.Printf("error in parsing log:%v",err)
+			continue
 		}
 		err=lp.repo.AddLog(log)
 		if(err!=nil){

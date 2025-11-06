@@ -1,5 +1,46 @@
+version: "3.9"
 
 services:
+  system_app:
+    build:
+      context: ./logging_system
+      dockerfile: Dockerfile
+    container_name: logging_system
+    volumes:
+      - ./data/log:/app/log
+    depends_on:
+      - zookeeper
+      - kafka
+
+  log_collector:
+    build:
+      context: ./log_collector
+      dockerfile: Dockerfile
+    container_name: log_collector
+    environment:
+      - KAFKA_BROKER=kafka:29092
+    volumes:
+      - ./data/log:/app/log
+    depends_on:
+      - zookeeper
+      - kafka
+      - system_app
+
+  log_processor:
+    build:
+      context: ./log_processor
+      dockerfile: Dockerfile
+    container_name: log_processor
+    environment:
+      - KAFKA_BROKER=kafka:29092
+    volumes:
+      - ./data/processor_data:/app/data
+    depends_on:
+      - zookeeper
+      - kafka
+      - system_app
+      - log_collector
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.7.0
     container_name: zookeeper
@@ -54,3 +95,5 @@ volumes:
   zookeeper_data:
   zookeeper_log:
   kafka_data:
+  system_data:
+  logs:
