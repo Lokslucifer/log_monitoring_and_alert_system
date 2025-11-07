@@ -2,50 +2,79 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
+
+
 
 	// "bufio"
 	// "strings"
+	alertdispatcher "log_processor/internal/alert_dispatcher"
 	"sync"
 
-	"log_processor/internal/message_receiver"
+	logstreamer "log_processor/internal/log_streamer"
 	"log_processor/internal/repository"
 	"log_processor/internal/service"
 )
 
-func simulate(ch chan<- string) {
-	logs := [...]string{
-		"INFO: 2025/11/05 12:12:38 service.go:36: Email Verified successfully",
-		"INFO: 2025/11/05 12:12:41 service.go:36: Login successful",
-		"ERROR: 2025/11/05 12:12:44 service.go:42: Invalid Request",
-		"ERROR: 2025/11/05 12:12:47 service.go:42: Invalid Request",
-	}
+// func simulate(ch chan<- string) {
+// 	logs := [...]string{
+// 		"INFO: 2025/11/05 12:12:38 service.go:36: Email Verified successfully",
+// 		"INFO: 2025/11/05 12:12:41 service.go:36: Login successful",
+// 		"ERROR: 2025/11/05 12:12:44 service.go:42: Invalid Request",
+// 		"ERROR: 2025/11/05 12:12:47 service.go:42: Invalid Request",
+// 	}
 
-	for _, log := range logs {
-		fmt.Println(log, "- sending")
-		ch <- log
-	}
-	close(ch)
-}
+// 	for _, log := range logs {
+// 		fmt.Println(log, "- sending")
+// 		ch <- log
+// 	}
+// 	close(ch)
+// }
 
 func main() {
-	topic_name := "log_processor"
+
+
+
+	topicName := os.Getenv("KAFKA_TOPIC")
+	if topicName == "" {
+		log.Fatal("KAFKA_TOPIC is not set in environment")
+	}
+	log_consumer, err := logstreamer.NewKafkaLogConsumer(topicName)
+	if err != nil {
+		log.Fatalf("error in creating kafka log consumer:%v", err)
+
+	}
 	ch := make(chan string)
 	var wg sync.WaitGroup
-	receiver := message_receiver.NewKafkaReceiver(topic_name)
-	wg.Add(2)
-	go receiver.ReceiveMessage(ch, &wg)
 
-	os.MkdirAll("./data", os.ModePerm)
-	dbPath := "./data/logs.db"
+	wg.Add(2)
+	go log_consumer.StartConsuming(ch, &wg)
+	db_directory := os.Getenv("DB_DIRECTORY")
+	if db_directory == "" {
+		log.Fatal("DB_DIRECTORY is not set in environment")
+	}
+
+	os.MkdirAll(db_directory, os.ModePerm)
+	dbPath := fmt.Sprintf("%v/logs.db", db_directory)
 
 	logRepo, err := repository.NewSQLiteStorage(dbPath)
 	if err != nil {
 		fmt.Printf("error initializing database: %v\n", err)
 		return
 	}
+	queue_name := os.Getenv("RABBIT_MQ_QUEUE")
+	if queue_name == "" {
+		log.Fatal("RABBIT_MQ_QUEUE is not set in environment")
+	}
 
-	logProcessor := service.NewLogProcessor(logRepo, ch)
+	alertpub, err := alertdispatcher.NewRabbitMQAlertPublisher(queue_name)
+	fmt.Println(alertpub, "-", err, "- initialised alert pub")
+	if err != nil {
+		log.Fatalf("error in creating alert published:%v", err)
+	}
+
+	logProcessor := service.NewLogProcessor(logRepo, ch, alertpub)
 	go logProcessor.ProcessLog(&wg)
 
 	// reader := bufio.NewReader(os.Stdin)

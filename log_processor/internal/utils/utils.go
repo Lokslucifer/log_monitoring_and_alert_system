@@ -19,7 +19,10 @@ func ParseLogLine(line string) (*models.LogEntry, error) {
     }
 
     lineNumber, _ := strconv.Atoi(matches[4])
-    t, _ := time.Parse("2006/01/02 15:04:05", matches[2])
+    t, err := time.Parse("2006/01/02 15:04:05", matches[2])
+    if(err!=nil){
+        return nil,fmt.Errorf("invalid time format")
+    }
 
     return &models.LogEntry{
         Level:      strings.ToUpper(matches[1]),

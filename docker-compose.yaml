@@ -6,11 +6,15 @@ services:
       context: ./logging_system
       dockerfile: Dockerfile
     container_name: logging_system
+    environment:
+      - LOG_FILE_PATH=./log/sys.log
     volumes:
       - ./data/log:/app/log
     depends_on:
-      - zookeeper
-      - kafka
+      kafka:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
 
   log_collector:
     build:
@@ -19,12 +23,17 @@ services:
     container_name: log_collector
     environment:
       - KAFKA_BROKER=kafka:29092
+      - KAFKA_TOPIC=log_processor
+      - LOG_FILE_PATH=./log/sys.log
     volumes:
       - ./data/log:/app/log
     depends_on:
-      - zookeeper
-      - kafka
-      - system_app
+      kafka:
+        condition: service_healthy
+      system_app:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
 
   log_processor:
     build:
@@ -32,63 +41,115 @@ services:
       dockerfile: Dockerfile
     container_name: log_processor
     environment:
+      - DB_DIRECTORY=./db
+      - KAFKA_TOPIC=log_processor
+      - RABBIT_MQ_QUEUE=error_alert
       - KAFKA_BROKER=kafka:29092
+      - RABBIT_MQ_BROKER=rabbitmq:5672
     volumes:
       - ./data/processor_data:/app/data
     depends_on:
-      - zookeeper
-      - kafka
-      - system_app
-      - log_collector
+      kafka:
+        condition: service_healthy
+      log_collector:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+  alert_system:
+    build:
+      context: ./alert_system
+      dockerfile: Dockerfile
+    container_name: alert_system
+    environment:
+      - RABBIT_MQ_QUEUE=error_alert
+      - RABBIT_MQ_BROKER=rabbitmq:5672
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      log_processor:
+        condition: service_started
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.7.0
     container_name: zookeeper
     environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
     ports:
       - "2181:2181"
     volumes:
       - zookeeper_data:/var/lib/zookeeper/data
       - zookeeper_log:/var/lib/zookeeper/log
+    healthcheck:
+      test: ["CMD", "echo", "ruok", "|", "nc", "localhost", "2181"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   kafka:
     image: confluentinc/cp-kafka:7.7.0
     container_name: kafka
     depends_on:
-      - zookeeper
+      zookeeper:
+        condition: service_healthy
     ports:
       - "9092:9092"
       - "29092:29092"
     environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT_INTERNAL
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
     volumes:
       - kafka_data:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics --bootstrap-server localhost:9092 --list || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
     container_name: kafka-ui
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     ports:
       - "8090:8080"
     environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
-      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:29092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
 
   kafka-client:
     image: confluentinc/cp-kafka:7.7.0
     container_name: kafka-client
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     entrypoint: ["tail", "-f", "/dev/null"]
 
 volumes:
@@ -97,3 +158,4 @@ volumes:
   kafka_data:
   system_data:
   logs:
+  rabbitmq_data:

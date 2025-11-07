@@ -1,4 +1,4 @@
-package Service
+package service
 
 import (
 	"bufio"
@@ -8,7 +8,7 @@ import (
 	"log_collector/internal/customErrors"
 	"os"
 	"time"
-	"log_collector/internal/message_sender"
+	"log_collector/internal/log_streamer"
 )
 
 type LogCollector struct {
@@ -16,10 +16,10 @@ type LogCollector struct {
 	rotated   chan bool
 	lines     chan string
 	stop      chan bool
-	sender     message_sender.MessageSender
+	sender     log_streamer.LogProducer
 }
 
-func NewLogCollector(file_name string,sender message_sender.MessageSender) *LogCollector {
+func NewLogCollector(file_name string,sender log_streamer.LogProducer) *LogCollector {
 
 	return &LogCollector{file_name: file_name, rotated: make(chan bool), lines: make(chan string), stop: make(chan bool),sender:sender}
 
@@ -45,7 +45,7 @@ func (lc *LogCollector) StartLogCollector() {
 	go lc.Watcher()
 
 	for line:=range lc.lines{
-		err:=lc.sender.SendMessage(line)
+		err:=lc.sender.SendLog(line)
 		if(err!=nil){
 			fmt.Println(err)
 			time.Sleep(500*time.Millisecond)

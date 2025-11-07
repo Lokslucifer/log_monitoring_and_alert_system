@@ -1,15 +1,29 @@
 package main
 
 import (
+	"log"
+	"log_collector/internal/log_streamer"
 	"log_collector/internal/service"
-	"log_collector/internal/message_sender"
+	"os"
 )
 
-func main(){
-	file_name:="./log/sys.log"
-	topic_name:="log_processor"
-	msg_sender:=message_sender.NewKafkaSender(topic_name)
-	log_collector:=Service.NewLogCollector(file_name,msg_sender)
-	log_collector.StartLogCollector()
+func main() {
+	logFilePath := os.Getenv("LOG_FILE_PATH")
+	if logFilePath == "" {
+		log.Fatal("LOG_FILE_PATH is not set in environment")
+	}
 
+	topicName := os.Getenv("KAFKA_TOPIC")
+	if topicName == "" {
+		log.Fatal("KAFKA_TOPIC is not set in environment")
+	}
+
+	msgSender, err := log_streamer.NewKafkaLogProducer(topicName)
+	if err != nil {
+		log.Fatalf("failed to create Kafka producer: %v", err)
+	}
+	defer msgSender.Close() // Always good to close the producer
+
+	logCollector := service.NewLogCollector(logFilePath, msgSender)
+	logCollector.StartLogCollector()
 }

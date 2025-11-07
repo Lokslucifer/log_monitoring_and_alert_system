@@ -6,12 +6,13 @@ WORKDIR /app
 
 # Copy files
 COPY . .
-RUN /log_collector/go mod download && /logging_system/go mod download
+RUN go mod download
 
 COPY . .
 
 # Build the Go app
-RUN go build -o logging_system ./logging_system/cmd && go build -o log_collector ./log_collector/cmd
+RUN go build -o alert_system ./cmd
 
 # Run the app
-CMD ["./logging_system","./log_collector"]
+CMD ["./alert_system"]
+# CMD ["go","run", "./cmd/main.go"]

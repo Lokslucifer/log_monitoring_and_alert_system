@@ -5,12 +5,19 @@ import (
 	"logging_system/internal/service"
 	"math/rand"
 	"time"
+	"os"
+	"log"
+
 )
 
 func simulate_logging(){
 
-	log_file_name:="./log/sys.log"
-	logger,err:=Service.NewLogger(log_file_name)
+	logFilePath := os.Getenv("LOG_FILE_PATH")
+	if logFilePath == "" {
+		log.Fatal("LOG_FILE_PATH is not set in environment")
+	}
+
+	logger,err:=Service.NewLogger(logFilePath)
 	if(err!=nil){
 		fmt.Println("Error During Logger creation:",err)
 	}

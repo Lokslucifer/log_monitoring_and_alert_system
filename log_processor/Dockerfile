@@ -12,7 +12,9 @@ RUN go mod download
 # Enable CGO explicitly
 ENV CGO_ENABLED=1
 
-# Build your app
+# # Build your app
 RUN go build -o ./log_processor_app ./cmd
 
 CMD ["./log_processor_app"]
+
+# CMD ["go","run", "./cmd/main.go"]
