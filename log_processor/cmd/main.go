@@ -5,34 +5,34 @@ import (
 	"log"
 	"os"
 
-
-
-	// "bufio"
-	// "strings"
 	alertdispatcher "log_processor/internal/alert_dispatcher"
 	"sync"
 
 	logstreamer "log_processor/internal/log_streamer"
 	"log_processor/internal/repository"
 	"log_processor/internal/service"
+	"log_processor/internal/handler/v1"
+	"github.com/gin-gonic/gin"
 )
 
-// func simulate(ch chan<- string) {
-// 	logs := [...]string{
-// 		"INFO: 2025/11/05 12:12:38 service.go:36: Email Verified successfully",
-// 		"INFO: 2025/11/05 12:12:41 service.go:36: Login successful",
-// 		"ERROR: 2025/11/05 12:12:44 service.go:42: Invalid Request",
-// 		"ERROR: 2025/11/05 12:12:47 service.go:42: Invalid Request",
-// 	}
 
-// 	for _, log := range logs {
-// 		fmt.Println(log, "- sending")
-// 		ch <- log
-// 	}
-// 	close(ch)
-// }
 
 func main() {
+
+
+	logFilePath := os.Getenv("LOG_FILE_PATH")
+    if logFilePath == "" {
+        logFilePath = "./log/log_processor.log" // fallback default
+    }
+
+    file, err := os.OpenFile(logFilePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+    if err != nil {
+        log.Fatalf("Error opening log file: %v", err)
+    }
+    defer file.Close()
+
+    log.SetOutput(file)
+    log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
 
 
 
@@ -60,7 +60,7 @@ func main() {
 
 	logRepo, err := repository.NewSQLiteStorage(dbPath)
 	if err != nil {
-		fmt.Printf("error initializing database: %v\n", err)
+		log.Fatalf("error initializing database: %v\n", err)
 		return
 	}
 	queue_name := os.Getenv("RABBIT_MQ_QUEUE")
@@ -69,7 +69,6 @@ func main() {
 	}
 
 	alertpub, err := alertdispatcher.NewRabbitMQAlertPublisher(queue_name)
-	fmt.Println(alertpub, "-", err, "- initialised alert pub")
 	if err != nil {
 		log.Fatalf("error in creating alert published:%v", err)
 	}
@@ -77,54 +76,16 @@ func main() {
 	logProcessor := service.NewLogProcessor(logRepo, ch, alertpub)
 	go logProcessor.ProcessLog(&wg)
 
-	// reader := bufio.NewReader(os.Stdin)
+	log_filter_service:=service.NewLogFilterService(logRepo)
 
-	// loop:
-	// for {
-	// 	// break
-	// 	fmt.Println("\n==== Log Viewer ====")
-	// 	fmt.Println("1. View all logs")
-	// 	fmt.Println("2. View logs by level")
-	// 	fmt.Println("3. Exit")
-	// 	fmt.Print("Enter choice: ")
+	handler:=v1.NewHandler(log_filter_service)
 
-	// 	var choice int
-	// 	fmt.Scanln(&choice)
 
-	// 	switch choice {
-	// 	case 1:
-	// 		logs, err := logRepo.GetAllLogs() // empty means all
-	// 		if err != nil {
-	// 			fmt.Println("Error fetching logs:", err)
-	// 			continue
-	// 		}
-	// 		fmt.Println("\n--- All Logs ---")
-	// 		for _, logEntry := range logs {
-	// 			fmt.Printf("[%s] %s\n", logEntry.Level, logEntry.Message)
-	// 		}
 
-	// 	case 2:
-	// 		fmt.Print("Enter level (INFO/ERROR/WARN): ")
-	// 		levelInput, _ := reader.ReadString('\n')
-	// 		levelInput = strings.TrimSpace(levelInput)
-	// 		logs, err := logRepo.GetLogsByLevel(levelInput)
-	// 		if err != nil {
-	// 			fmt.Println("Error fetching logs:", err)
-	// 			continue
-	// 		}
-	// 		fmt.Printf("\n--- Logs with level: %s ---\n", strings.ToUpper(levelInput))
-	// 		for _, logEntry := range logs {
-	// 			fmt.Printf("[%s] %s\n", logEntry.Level, logEntry.Message)
-	// 		}
+	// implement gin server for querying log database and stoping the server based on user request
+	r := gin.Default()
+	r.GET("/logs",handler.FilterLogsHandler)
+	r.Run(":8090")
 
-	// 	case 3:
-	// 		fmt.Println("Exiting...")
-	// 		receiver.StopReceiver()
-	// 		break loop
-
-	// 	default:
-	// 		fmt.Println("Invalid choice, please try again.")
-	// 	}
-	// }
 	wg.Wait()
 }

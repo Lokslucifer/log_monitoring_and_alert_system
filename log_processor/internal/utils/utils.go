@@ -13,7 +13,7 @@ var logPattern = regexp.MustCompile(`^(?P<level>\w+): (?P<datetime>\d{4}/\d{2}/\
 
 func ParseLogLine(line string) (*models.LogEntry, error) {
     matches := logPattern.FindStringSubmatch(line)
-    // fmt.Println("parsing-",line)
+
     if len(matches) == 0 {
         return nil, fmt.Errorf("invalid log format")
     }
@@ -31,4 +31,37 @@ func ParseLogLine(line string) (*models.LogEntry, error) {
         LineNumber: lineNumber,
         Message:    matches[5],
     }, nil
+}
+
+func ParseTimeString(timeStr string)(time.Time,error){
+    if(timeStr==""){
+        return time.Time{},nil
+    }
+    timeVal, err := time.Parse(time.RFC3339, timeStr)
+    if err != nil {
+        return time.Time{},err
+    }
+    return timeVal,nil
+}
+
+func ParseLevels(levelsParam string)([]string){
+    var levels []string
+    if(levelsParam!=""){
+    for _, lvl := range strings.Split(levelsParam, ",") {
+        levels = append(levels, strings.ToUpper(strings.TrimSpace(lvl)))
+    }
+}
+    return levels
+
+}
+
+func ParseInt(s string, defaultVal int) int {
+	if s == "" {
+		return defaultVal
+	}
+	val, err := strconv.Atoi(s)
+	if err != nil {
+		return defaultVal
+	}
+	return val
 }

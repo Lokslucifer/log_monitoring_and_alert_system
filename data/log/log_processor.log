@@ -1,0 +1,426 @@
+2025/11/09 21:32:46 kafka.go:57: kafka:29092
+2025/11/09 21:32:46 kafka.go:67: Kafka consumer initialized for topic: log_processor
+2025/11/09 21:32:58 kafka.go:39: Received log: ERROR: 2025/11/07 08:14:35 service.go:42: Invalid Request
+
+2025/11/09 21:32:58 kafka.go:39: Received log: INFO: 2025/11/09 21:30:20 service.go:36: Login successful
+
+2025/11/09 21:32:58 kafka.go:39: Received log: ERROR: 2025/11/09 21:30:29 service.go:42: Internal Server Error
+
+2025/11/09 21:32:58 kafka.go:39: Received log: ERROR: 2025/11/09 21:32:53 service.go:42: Not Authorised
+
+2025/11/09 21:32:58 kafka.go:39: Received log: INFO: 2025/11/09 21:30:14 service.go:36: Login successful
+
+2025/11/09 21:32:58 kafka.go:39: Received log: INFO: 2025/11/09 21:30:26 service.go:36: Login successful
+
+2025/11/09 21:32:58 kafka.go:39: Received log: INFO: 2025/11/09 21:32:47 service.go:36: Email Verified successfully
+
+2025/11/09 21:32:58 kafka.go:39: Received log: ERROR: 2025/11/09 21:30:17 service.go:42: Not Authorised
+
+2025/11/09 21:32:58 kafka.go:39: Received log: INFO: 2025/11/09 21:30:23 service.go:36: Login successful
+
+2025/11/09 21:32:58 kafka.go:39: Received log: INFO: 2025/11/09 21:30:32 service.go:36: Email Verified successfully
+
+2025/11/09 21:32:58 kafka.go:39: Received log: ERROR: 2025/11/09 21:32:50 service.go:42: Invalid Input
+
+2025/11/09 21:32:58 kafka.go:39: Received log: ERROR: 2025/11/09 21:32:56 service.go:42: Not Authorised
+
+2025/11/09 21:45:31 kafka.go:56: kafka:29092
+2025/11/09 21:45:31 kafka.go:66: Kafka consumer initialized for topic: log_processor
+2025/11/09 21:46:08 kafka.go:38: Received log: INFO: 2025/11/09 21:32:59 service.go:36: Email Verified successfully
+
+2025/11/09 21:46:08 kafka.go:38: Received log: ERROR: 2025/11/09 21:45:39 service.go:40: Internal Server Error
+
+2025/11/09 21:46:08 kafka.go:38: Received log: ERROR: 2025/11/09 21:45:48 service.go:40: Not Authorised
+
+2025/11/09 21:46:08 kafka.go:38: Received log: ERROR: 2025/11/09 21:45:57 service.go:40: Not Authorised
+
+2025/11/09 21:46:08 kafka.go:38: Received log: INFO: 2025/11/09 21:46:06 service.go:34: Signup unsuccessful
+
+2025/11/09 21:46:08 kafka.go:38: Received log: ERROR: 2025/11/09 21:33:02 service.go:42: Internal Server Error
+
+2025/11/09 21:46:08 kafka.go:38: Received log: INFO: 2025/11/09 21:45:33 service.go:34: Login successful
+
+2025/11/09 21:46:08 kafka.go:38: Received log: INFO: 2025/11/09 21:45:45 service.go:34: Login successful
+
+2025/11/09 21:46:08 kafka.go:38: Received log: INFO: 2025/11/09 21:45:51 service.go:34: Signup unsuccessful
+
+2025/11/09 21:46:08 kafka.go:38: Received log: INFO: 2025/11/09 21:46:00 service.go:34: Login successful
+
+2025/11/09 21:46:08 kafka.go:38: Received log: ERROR: 2025/11/09 21:45:36 service.go:40: Invalid Input
+
+2025/11/09 21:46:08 kafka.go:38: Received log: ERROR: 2025/11/09 21:45:42 service.go:40: Internal Server Error
+
+2025/11/09 21:46:08 kafka.go:38: Received log: ERROR: 2025/11/09 21:45:54 service.go:40: Not Authorised
+
+2025/11/09 21:46:08 kafka.go:38: Received log: INFO: 2025/11/09 21:46:03 service.go:34: Signup unsuccessful
+
+2025/11/09 21:46:17 kafka.go:38: Received log: INFO: 2025/11/09 21:46:15 service.go:34: Signup unsuccessful
+
+2025/11/09 21:46:17 kafka.go:38: Received log: INFO: 2025/11/09 21:46:09 service.go:34: Email Verified successfully
+
+2025/11/09 21:46:17 kafka.go:38: Received log: ERROR: 2025/11/09 21:46:12 service.go:40: Not Authorised
+
+2025/11/09 21:46:26 kafka.go:38: Received log: INFO: 2025/11/09 21:46:21 service.go:34: Email Verified successfully
+
+2025/11/09 21:46:26 kafka.go:38: Received log: ERROR: 2025/11/09 21:46:24 service.go:40: Invalid Input
+
+2025/11/09 21:46:26 kafka.go:38: Received log: INFO: 2025/11/09 21:46:18 service.go:34: Email Verified successfully
+
+2025/11/09 21:46:35 kafka.go:38: Received log: ERROR: 2025/11/09 21:46:33 service.go:40: Not Authorised
+
+2025/11/09 21:46:35 kafka.go:38: Received log: INFO: 2025/11/09 21:46:27 service.go:34: Email Verified successfully
+
+2025/11/09 21:46:35 kafka.go:38: Received log: INFO: 2025/11/09 21:46:30 service.go:34: Login successful
+
+2025/11/09 21:46:44 kafka.go:38: Received log: ERROR: 2025/11/09 21:46:39 service.go:40: Internal Server Error
+
+2025/11/09 21:46:44 kafka.go:38: Received log: INFO: 2025/11/09 21:46:42 service.go:34: Signup unsuccessful
+
+2025/11/09 21:46:44 kafka.go:38: Received log: ERROR: 2025/11/09 21:46:36 service.go:40: Invalid Input
+
+2025/11/09 21:46:53 kafka.go:38: Received log: INFO: 2025/11/09 21:46:51 service.go:34: Login successful
+
+2025/11/09 21:46:53 kafka.go:38: Received log: ERROR: 2025/11/09 21:46:48 service.go:40: Not Authorised
+
+2025/11/09 21:46:53 kafka.go:38: Received log: INFO: 2025/11/09 21:46:45 service.go:34: Email Verified successfully
+
+2025/11/09 21:47:02 kafka.go:38: Received log: ERROR: 2025/11/09 21:47:00 service.go:40: Invalid Input
+
+2025/11/09 21:47:02 kafka.go:38: Received log: INFO: 2025/11/09 21:46:54 service.go:34: Login successful
+
+2025/11/09 21:47:02 kafka.go:38: Received log: ERROR: 2025/11/09 21:46:57 service.go:40: Internal Server Error
+
+2025/11/09 21:47:11 kafka.go:38: Received log: ERROR: 2025/11/09 21:47:03 service.go:40: Not Authorised
+
+2025/11/09 21:47:11 kafka.go:38: Received log: ERROR: 2025/11/09 21:47:06 service.go:40: Invalid Request
+
+2025/11/09 21:47:11 kafka.go:38: Received log: ERROR: 2025/11/09 21:47:09 service.go:40: Not Authorised
+
+2025/11/10 06:24:37 kafka.go:56: kafka:29092
+2025/11/10 06:24:37 kafka.go:66: Kafka consumer initialized for topic: log_processor
+2025/11/10 06:25:08 kafka.go:38: Received log: ERROR: 2025/11/10 06:24:37 service.go:40: Invalid Input
+
+2025/11/10 06:25:08 kafka.go:38: Received log: ERROR: 2025/11/10 06:24:46 service.go:40: Invalid Input
+
+2025/11/10 06:25:08 kafka.go:38: Received log: ERROR: 2025/11/10 06:24:55 service.go:40: Invalid Request
+
+2025/11/10 06:25:08 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:04 service.go:40: Internal Server Error
+
+2025/11/10 06:25:08 kafka.go:38: Received log: INFO: 2025/11/10 06:24:40 service.go:34: Email Verified successfully
+
+2025/11/10 06:25:08 kafka.go:38: Received log: INFO: 2025/11/10 06:24:52 service.go:34: Email Verified successfully
+
+2025/11/10 06:25:08 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:01 service.go:40: Invalid Request
+
+2025/11/10 06:25:08 kafka.go:38: Received log: ERROR: 2025/11/09 21:47:12 service.go:40: Invalid Input
+
+2025/11/10 06:25:08 kafka.go:38: Received log: ERROR: 2025/11/10 06:24:43 service.go:40: Invalid Request
+
+2025/11/10 06:25:08 kafka.go:38: Received log: INFO: 2025/11/10 06:24:49 service.go:34: Signup unsuccessful
+
+2025/11/10 06:25:08 kafka.go:38: Received log: INFO: 2025/11/10 06:24:58 service.go:34: Email Verified successfully
+
+2025/11/10 06:25:17 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:13 service.go:40: Invalid Input
+
+2025/11/10 06:25:17 kafka.go:38: Received log: INFO: 2025/11/10 06:25:10 service.go:34: Email Verified successfully
+
+2025/11/10 06:25:17 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:07 service.go:40: Not Authorised
+
+2025/11/10 06:25:26 kafka.go:38: Received log: INFO: 2025/11/10 06:25:22 service.go:34: Signup unsuccessful
+
+2025/11/10 06:25:26 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:19 service.go:40: Invalid Request
+
+2025/11/10 06:25:26 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:16 service.go:40: Not Authorised
+
+2025/11/10 06:25:35 kafka.go:38: Received log: INFO: 2025/11/10 06:25:31 service.go:34: Signup unsuccessful
+
+2025/11/10 06:25:35 kafka.go:38: Received log: INFO: 2025/11/10 06:25:28 service.go:34: Signup unsuccessful
+
+2025/11/10 06:25:35 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:25 service.go:40: Internal Server Error
+
+2025/11/10 06:25:44 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:40 service.go:40: Invalid Request
+
+2025/11/10 06:25:44 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:37 service.go:40: Invalid Input
+
+2025/11/10 06:25:44 kafka.go:38: Received log: INFO: 2025/11/10 06:25:34 service.go:34: Login successful
+
+2025/11/10 06:25:53 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:49 service.go:40: Not Authorised
+
+2025/11/10 06:25:53 kafka.go:38: Received log: INFO: 2025/11/10 06:25:43 service.go:34: Email Verified successfully
+
+2025/11/10 06:25:53 kafka.go:38: Received log: INFO: 2025/11/10 06:25:46 service.go:34: Login successful
+
+2025/11/10 06:26:02 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:58 service.go:40: Invalid Request
+
+2025/11/10 06:26:02 kafka.go:38: Received log: ERROR: 2025/11/10 06:25:52 service.go:40: Not Authorised
+
+2025/11/10 06:26:02 kafka.go:38: Received log: INFO: 2025/11/10 06:25:55 service.go:34: Email Verified successfully
+
+2025/11/10 06:26:11 kafka.go:38: Received log: INFO: 2025/11/10 06:26:07 service.go:34: Signup unsuccessful
+
+2025/11/10 06:26:11 kafka.go:38: Received log: ERROR: 2025/11/10 06:26:01 service.go:40: Invalid Request
+
+2025/11/10 06:26:11 kafka.go:38: Received log: ERROR: 2025/11/10 06:26:04 service.go:40: Invalid Input
+
+2025/11/10 06:26:20 kafka.go:38: Received log: ERROR: 2025/11/10 06:26:16 service.go:40: Invalid Request
+
+2025/11/10 06:26:20 kafka.go:38: Received log: ERROR: 2025/11/10 06:26:10 service.go:40: Internal Server Error
+
+2025/11/10 06:26:20 kafka.go:38: Received log: ERROR: 2025/11/10 06:26:13 service.go:40: Invalid Request
+
+2025/11/10 06:26:29 kafka.go:38: Received log: INFO: 2025/11/10 06:26:25 service.go:34: Login successful
+
+2025/11/10 06:26:29 kafka.go:38: Received log: INFO: 2025/11/10 06:26:19 service.go:34: Email Verified successfully
+
+2025/11/10 06:26:29 kafka.go:38: Received log: INFO: 2025/11/10 06:26:22 service.go:34: Login successful
+
+2025/11/10 06:26:38 kafka.go:38: Received log: ERROR: 2025/11/10 06:26:34 service.go:40: Internal Server Error
+
+2025/11/10 06:26:38 kafka.go:38: Received log: ERROR: 2025/11/10 06:26:31 service.go:40: Not Authorised
+
+2025/11/10 06:26:38 kafka.go:38: Received log: INFO: 2025/11/10 06:26:28 service.go:34: Login successful
+
+2025/11/10 06:26:47 kafka.go:38: Received log: INFO: 2025/11/10 06:26:43 service.go:34: Signup unsuccessful
+
+2025/11/10 06:26:47 kafka.go:38: Received log: ERROR: 2025/11/10 06:26:40 service.go:40: Internal Server Error
+
+2025/11/10 06:26:47 kafka.go:38: Received log: ERROR: 2025/11/10 06:26:37 service.go:40: Invalid Input
+
+2025/11/10 06:28:13 kafka.go:56: kafka:29092
+2025/11/10 06:28:13 kafka.go:66: Kafka consumer initialized for topic: log_processor
+2025/11/10 06:28:49 kafka.go:38: Received log: ERROR: 2025/11/10 06:28:15 service.go:40: Invalid Input
+
+2025/11/10 06:28:49 kafka.go:38: Received log: ERROR: 2025/11/10 06:28:24 service.go:40: Invalid Input
+
+2025/11/10 06:28:49 kafka.go:38: Received log: INFO: 2025/11/10 06:28:33 service.go:34: Signup unsuccessful
+
+2025/11/10 06:28:49 kafka.go:38: Received log: ERROR: 2025/11/10 06:28:42 service.go:40: Invalid Input
+
+2025/11/10 06:28:49 kafka.go:38: Received log: ERROR: 2025/11/10 06:28:21 service.go:40: Invalid Request
+
+2025/11/10 06:28:49 kafka.go:38: Received log: INFO: 2025/11/10 06:28:30 service.go:34: Email Verified successfully
+
+2025/11/10 06:28:49 kafka.go:38: Received log: ERROR: 2025/11/10 06:28:39 service.go:40: Internal Server Error
+
+2025/11/10 06:28:49 kafka.go:38: Received log: INFO: 2025/11/10 06:28:48 service.go:34: Email Verified successfully
+
+2025/11/10 06:28:49 kafka.go:38: Received log: INFO: 2025/11/10 06:26:46 service.go:34: Login successful
+
+2025/11/10 06:28:49 kafka.go:38: Received log: ERROR: 2025/11/10 06:28:18 service.go:40: Not Authorised
+
+2025/11/10 06:28:49 kafka.go:38: Received log: INFO: 2025/11/10 06:28:27 service.go:34: Login successful
+
+2025/11/10 06:28:49 kafka.go:38: Received log: INFO: 2025/11/10 06:28:36 service.go:34: Email Verified successfully
+
+2025/11/10 06:28:49 kafka.go:38: Received log: INFO: 2025/11/10 06:28:45 service.go:34: Signup unsuccessful
+
+2025/11/10 06:28:58 kafka.go:38: Received log: ERROR: 2025/11/10 06:28:51 service.go:40: Internal Server Error
+
+2025/11/10 06:28:58 kafka.go:38: Received log: ERROR: 2025/11/10 06:28:57 service.go:40: Invalid Input
+
+2025/11/10 06:28:58 kafka.go:38: Received log: ERROR: 2025/11/10 06:28:54 service.go:40: Invalid Input
+
+2025/11/10 06:29:07 kafka.go:38: Received log: INFO: 2025/11/10 06:29:00 service.go:34: Signup unsuccessful
+
+2025/11/10 06:29:07 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:06 service.go:40: Invalid Input
+
+2025/11/10 06:29:07 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:03 service.go:40: Invalid Input
+
+2025/11/10 06:29:16 kafka.go:38: Received log: INFO: 2025/11/10 06:29:09 service.go:34: Email Verified successfully
+
+2025/11/10 06:29:16 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:15 service.go:40: Invalid Request
+
+2025/11/10 06:29:16 kafka.go:38: Received log: INFO: 2025/11/10 06:29:12 service.go:34: Email Verified successfully
+
+2025/11/10 06:29:25 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:18 service.go:40: Not Authorised
+
+2025/11/10 06:29:25 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:24 service.go:40: Invalid Request
+
+2025/11/10 06:29:25 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:21 service.go:40: Not Authorised
+
+2025/11/10 06:29:34 kafka.go:38: Received log: INFO: 2025/11/10 06:29:27 service.go:34: Signup unsuccessful
+
+2025/11/10 06:29:34 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:33 service.go:40: Invalid Input
+
+2025/11/10 06:29:34 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:30 service.go:40: Invalid Request
+
+2025/11/10 06:29:43 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:36 service.go:40: Not Authorised
+
+2025/11/10 06:29:43 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:42 service.go:40: Internal Server Error
+
+2025/11/10 06:29:43 kafka.go:38: Received log: INFO: 2025/11/10 06:29:39 service.go:34: Email Verified successfully
+
+2025/11/10 06:29:52 kafka.go:38: Received log: INFO: 2025/11/10 06:29:45 service.go:34: Signup unsuccessful
+
+2025/11/10 06:29:52 kafka.go:38: Received log: INFO: 2025/11/10 06:29:48 service.go:34: Login successful
+
+2025/11/10 06:29:52 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:51 service.go:40: Invalid Request
+
+2025/11/10 06:30:01 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:54 service.go:40: Invalid Request
+
+2025/11/10 06:30:01 kafka.go:38: Received log: ERROR: 2025/11/10 06:29:57 service.go:40: Internal Server Error
+
+2025/11/10 06:30:01 kafka.go:38: Received log: ERROR: 2025/11/10 06:30:00 service.go:40: Internal Server Error
+
+2025/11/10 06:30:10 kafka.go:38: Received log: ERROR: 2025/11/10 06:30:03 service.go:40: Invalid Input
+
+2025/11/10 06:30:10 kafka.go:38: Received log: INFO: 2025/11/10 06:30:06 service.go:34: Login successful
+
+2025/11/10 06:30:10 kafka.go:38: Received log: INFO: 2025/11/10 06:30:09 service.go:34: Login successful
+
+2025/11/10 06:30:19 kafka.go:38: Received log: INFO: 2025/11/10 06:30:12 service.go:34: Login successful
+
+2025/11/10 06:30:19 kafka.go:38: Received log: ERROR: 2025/11/10 06:30:15 service.go:40: Internal Server Error
+
+2025/11/10 06:30:19 kafka.go:38: Received log: INFO: 2025/11/10 06:30:18 service.go:34: Login successful
+
+2025/11/10 06:30:28 kafka.go:38: Received log: ERROR: 2025/11/10 06:30:21 service.go:40: Internal Server Error
+
+2025/11/10 06:30:28 kafka.go:38: Received log: ERROR: 2025/11/10 06:30:27 service.go:40: Invalid Request
+
+2025/11/10 06:30:28 kafka.go:38: Received log: INFO: 2025/11/10 06:30:24 service.go:34: Email Verified successfully
+
+2025/11/10 06:30:37 kafka.go:38: Received log: ERROR: 2025/11/10 06:30:30 service.go:40: Internal Server Error
+
+2025/11/10 06:30:37 kafka.go:38: Received log: ERROR: 2025/11/10 06:30:33 service.go:40: Internal Server Error
+
+2025/11/10 06:30:37 kafka.go:38: Received log: INFO: 2025/11/10 06:30:36 service.go:34: Signup unsuccessful
+
+2025/11/10 06:30:46 kafka.go:38: Received log: ERROR: 2025/11/10 06:30:39 service.go:40: Internal Server Error
+
+2025/11/10 06:30:46 kafka.go:38: Received log: INFO: 2025/11/10 06:30:42 service.go:34: Login successful
+
+2025/11/10 06:30:46 kafka.go:38: Received log: ERROR: 2025/11/10 06:30:45 service.go:40: Invalid Request
+
+2025/11/10 06:30:55 kafka.go:38: Received log: INFO: 2025/11/10 06:30:48 service.go:34: Email Verified successfully
+
+2025/11/10 06:30:55 kafka.go:38: Received log: INFO: 2025/11/10 06:30:51 service.go:34: Login successful
+
+2025/11/10 06:30:55 kafka.go:38: Received log: INFO: 2025/11/10 06:30:54 service.go:34: Signup unsuccessful
+
+2025/11/10 06:31:04 kafka.go:38: Received log: INFO: 2025/11/10 06:31:00 service.go:34: Email Verified successfully
+
+2025/11/10 06:31:04 kafka.go:38: Received log: INFO: 2025/11/10 06:30:57 service.go:34: Signup unsuccessful
+
+2025/11/10 06:31:04 kafka.go:38: Received log: INFO: 2025/11/10 06:31:03 service.go:34: Login successful
+
+2025/11/10 06:31:13 kafka.go:38: Received log: ERROR: 2025/11/10 06:31:12 service.go:40: Not Authorised
+
+2025/11/10 06:31:13 kafka.go:38: Received log: INFO: 2025/11/10 06:31:06 service.go:34: Email Verified successfully
+
+2025/11/10 06:31:13 kafka.go:38: Received log: ERROR: 2025/11/10 06:31:09 service.go:40: Not Authorised
+
+2025/11/10 06:31:22 kafka.go:38: Received log: INFO: 2025/11/10 06:31:18 service.go:34: Signup unsuccessful
+
+2025/11/10 06:31:22 kafka.go:38: Received log: ERROR: 2025/11/10 06:31:21 service.go:40: Invalid Input
+
+2025/11/10 06:31:22 kafka.go:38: Received log: ERROR: 2025/11/10 06:31:15 service.go:40: Internal Server Error
+
+2025/11/10 06:31:31 kafka.go:38: Received log: INFO: 2025/11/10 06:31:27 service.go:34: Email Verified successfully
+
+2025/11/10 06:31:31 kafka.go:38: Received log: ERROR: 2025/11/10 06:31:30 service.go:40: Not Authorised
+
+2025/11/10 06:31:31 kafka.go:38: Received log: ERROR: 2025/11/10 06:31:24 service.go:40: Not Authorised
+
+2025/11/10 06:31:40 kafka.go:38: Received log: ERROR: 2025/11/10 06:31:36 service.go:40: Internal Server Error
+
+2025/11/10 06:31:40 kafka.go:38: Received log: INFO: 2025/11/10 06:31:33 service.go:34: Login successful
+
+2025/11/10 06:31:40 kafka.go:38: Received log: ERROR: 2025/11/10 06:31:39 service.go:40: Not Authorised
+
+2025/11/10 06:31:49 kafka.go:38: Received log: ERROR: 2025/11/10 06:31:45 service.go:40: Invalid Input
+
+2025/11/10 06:31:49 kafka.go:38: Received log: INFO: 2025/11/10 06:31:42 service.go:34: Login successful
+
+2025/11/10 06:31:49 kafka.go:38: Received log: INFO: 2025/11/10 06:31:48 service.go:34: Signup unsuccessful
+
+2025/11/10 06:31:58 kafka.go:38: Received log: INFO: 2025/11/10 06:31:54 service.go:34: Login successful
+
+2025/11/10 06:31:58 kafka.go:38: Received log: ERROR: 2025/11/10 06:31:51 service.go:40: Invalid Input
+
+2025/11/10 06:31:58 kafka.go:38: Received log: INFO: 2025/11/10 06:31:57 service.go:34: Email Verified successfully
+
+2025/11/10 06:32:07 kafka.go:38: Received log: ERROR: 2025/11/10 06:32:03 service.go:40: Invalid Input
+
+2025/11/10 06:32:07 kafka.go:38: Received log: ERROR: 2025/11/10 06:32:00 service.go:40: Internal Server Error
+
+2025/11/10 06:32:07 kafka.go:38: Received log: INFO: 2025/11/10 06:32:06 service.go:34: Login successful
+
+2025/11/10 06:32:16 kafka.go:38: Received log: INFO: 2025/11/10 06:32:12 service.go:34: Signup unsuccessful
+
+2025/11/10 06:32:16 kafka.go:38: Received log: INFO: 2025/11/10 06:32:09 service.go:34: Email Verified successfully
+
+2025/11/10 06:32:16 kafka.go:38: Received log: INFO: 2025/11/10 06:32:15 service.go:34: Email Verified successfully
+
+2025/11/10 06:32:25 kafka.go:38: Received log: INFO: 2025/11/10 06:32:18 service.go:34: Email Verified successfully
+
+2025/11/10 06:32:25 kafka.go:38: Received log: INFO: 2025/11/10 06:32:21 service.go:34: Signup unsuccessful
+
+2025/11/10 06:32:25 kafka.go:38: Received log: INFO: 2025/11/10 06:32:24 service.go:34: Email Verified successfully
+
+2025/11/10 06:32:34 kafka.go:38: Received log: INFO: 2025/11/10 06:32:30 service.go:34: Email Verified successfully
+
+2025/11/10 06:32:34 kafka.go:38: Received log: INFO: 2025/11/10 06:32:27 service.go:34: Login successful
+
+2025/11/10 06:32:34 kafka.go:38: Received log: ERROR: 2025/11/10 06:32:33 service.go:40: Not Authorised
+
+2025/11/10 06:32:43 kafka.go:38: Received log: ERROR: 2025/11/10 06:32:39 service.go:40: Invalid Input
+
+2025/11/10 06:32:43 kafka.go:38: Received log: INFO: 2025/11/10 06:32:36 service.go:34: Signup unsuccessful
+
+2025/11/10 06:32:43 kafka.go:38: Received log: INFO: 2025/11/10 06:32:42 service.go:34: Login successful
+
+2025/11/10 06:32:52 kafka.go:38: Received log: INFO: 2025/11/10 06:32:48 service.go:34: Signup unsuccessful
+
+2025/11/10 06:32:52 kafka.go:38: Received log: INFO: 2025/11/10 06:32:45 service.go:34: Signup unsuccessful
+
+2025/11/10 06:32:52 kafka.go:38: Received log: ERROR: 2025/11/10 06:32:51 service.go:40: Not Authorised
+
+2025/11/10 06:33:01 kafka.go:38: Received log: INFO: 2025/11/10 06:32:57 service.go:34: Login successful
+
+2025/11/10 06:33:01 kafka.go:38: Received log: INFO: 2025/11/10 06:32:54 service.go:34: Email Verified successfully
+
+2025/11/10 06:33:01 kafka.go:38: Received log: INFO: 2025/11/10 06:33:00 service.go:34: Email Verified successfully
+
+2025/11/10 06:33:10 kafka.go:38: Received log: ERROR: 2025/11/10 06:33:03 service.go:40: Not Authorised
+
+2025/11/10 06:33:10 kafka.go:38: Received log: INFO: 2025/11/10 06:33:06 service.go:34: Login successful
+
+2025/11/10 06:33:10 kafka.go:38: Received log: INFO: 2025/11/10 06:33:09 service.go:34: Signup unsuccessful
+
+2025/11/10 06:33:19 kafka.go:38: Received log: ERROR: 2025/11/10 06:33:12 service.go:40: Internal Server Error
+
+2025/11/10 06:33:19 kafka.go:38: Received log: INFO: 2025/11/10 06:33:15 service.go:34: Email Verified successfully
+
+2025/11/10 06:33:19 kafka.go:38: Received log: INFO: 2025/11/10 06:33:18 service.go:34: Email Verified successfully
+
+2025/11/10 06:33:28 kafka.go:38: Received log: ERROR: 2025/11/10 06:33:21 service.go:40: Internal Server Error
+
+2025/11/10 06:33:28 kafka.go:38: Received log: ERROR: 2025/11/10 06:33:24 service.go:40: Not Authorised
+
+2025/11/10 06:33:28 kafka.go:38: Received log: ERROR: 2025/11/10 06:33:27 service.go:40: Not Authorised
+
+2025/11/10 06:33:37 kafka.go:38: Received log: ERROR: 2025/11/10 06:33:30 service.go:40: Not Authorised
+
+2025/11/10 06:33:37 kafka.go:38: Received log: ERROR: 2025/11/10 06:33:33 service.go:40: Not Authorised
+
+2025/11/10 06:33:37 kafka.go:38: Received log: INFO: 2025/11/10 06:33:36 service.go:34: Email Verified successfully
+
+2025/11/10 06:33:46 kafka.go:38: Received log: ERROR: 2025/11/10 06:33:39 service.go:40: Internal Server Error
+
+2025/11/10 06:33:46 kafka.go:38: Received log: ERROR: 2025/11/10 06:33:42 service.go:40: Invalid Input
+
+2025/11/10 06:33:46 kafka.go:38: Received log: ERROR: 2025/11/10 06:33:45 service.go:40: Invalid Request
+
+2025/11/10 06:33:55 kafka.go:38: Received log: INFO: 2025/11/10 06:33:51 service.go:34: Login successful
+
+2025/11/10 06:33:55 kafka.go:38: Received log: INFO: 2025/11/10 06:33:54 service.go:34: Email Verified successfully
+
+2025/11/10 06:33:55 kafka.go:38: Received log: INFO: 2025/11/10 06:33:48 service.go:34: Login successful
+
+2025/11/10 06:34:04 kafka.go:38: Received log: ERROR: 2025/11/10 06:34:00 service.go:40: Internal Server Error
+
+2025/11/10 06:34:04 kafka.go:38: Received log: ERROR: 2025/11/10 06:34:03 service.go:40: Invalid Input
+
+2025/11/10 06:34:04 kafka.go:38: Received log: INFO: 2025/11/10 06:33:57 service.go:34: Login successful
+

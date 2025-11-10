@@ -46,7 +46,7 @@ func createNewKafkaTopic(broker string,topic string)error{
         return fmt.Errorf("failed to create topic: %v", err)
     }
 
-    fmt.Println("✅ Topic created successfully:", topic)
+    log.Println("✅ Topic created successfully:", topic)
     return nil
 }
 
@@ -60,7 +60,7 @@ func (p *KafkaLogProducer) SendLog(msg string) error {
     if err != nil {
         return fmt.Errorf("failed to send message: %v", err)
     }
-    fmt.Println("Message delivered successfully")
+    log.Println("Message delivered successfully")
     return nil
 }
 

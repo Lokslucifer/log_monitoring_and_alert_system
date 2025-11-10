@@ -1,11 +1,11 @@
 package service
 
 import (
-	"fmt"
 	alertdispatcher "log_processor/internal/alert_dispatcher"
 	"log_processor/internal/repository"
 	"log_processor/internal/utils"
 	"sync"
+	"log"
 )
 
 type LogProcessor struct {
@@ -23,25 +23,25 @@ func (lp *LogProcessor) ProcessLog(wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	for logline := range lp.receiver {
-		// fmt.Printf("%v",logline)
-		log, err := utils.ParseLogLine(logline)
+		
+		log_data, err := utils.ParseLogLine(logline)
 
 		if err != nil {
-			fmt.Printf("error in parsing log:%v", err)
+			log.Printf("error in parsing log:%v", err)
 			continue
 		}
 
-		if log.Level == "ERROR" {
+		if log_data.Level == "ERROR" {
 			
-			err := lp.alertpub.PublishLog(*log)
+			err := lp.alertpub.PublishLog(*log_data)
 			if err != nil {
-				fmt.Printf("error in publishing log:%v", err)
+				log.Printf("error in publishing log:%v", err)
 			}
 
 		}
-		err = lp.repo.AddLog(log)
+		err = lp.repo.AddLog(log_data)
 		if err != nil {
-			fmt.Printf("error in adding log:%v", err)
+			log.Printf("error in adding log:%v", err)
 		}
 	}
 }

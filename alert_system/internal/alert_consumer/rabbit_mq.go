@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"alert_system/internal/alert_sender"
+	"log"
 
 	"github.com/streadway/amqp"
 )
@@ -37,13 +38,15 @@ func NewRabbitMQAlertConsumer(queueName string) (*RabbitMQAlertConsumer, error) 
 	password := os.Getenv("RABBIT_MQ_PASSWORD")
 
 	if user == "" {
-		user = "guest"
+		log.Fatal("RABBIT_MQ_USER is not set in environment")
 	}
+
 	if password == "" {
-		password = "guest"
+		log.Fatal("RABBIT_MQ_PASSWORD is not set in environment")
 	}
+
 	if broker == "" {
-		broker = "localhost:5672"
+		log.Fatal("RABBIT_MQ_BROKER is not set in environment")
 	}
 
 	// Connect to RabbitMQ
@@ -88,7 +91,7 @@ func NewRabbitMQAlertConsumer(queueName string) (*RabbitMQAlertConsumer, error) 
 
 		ch.Close()
 		conn.Close()
-		return nil, fmt.Errorf("Failed to register consumer: %v", err)
+		return nil, fmt.Errorf("failed to register consumer: %v", err)
 	}
 
 	return &RabbitMQAlertConsumer{

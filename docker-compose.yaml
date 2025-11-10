@@ -7,7 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: logging_system
     environment:
-      - LOG_FILE_PATH=./log/sys.log
+      - SIMULATED_LOG_FILE_PATH=./log/sys.log
+      - LOG_FILE_PATH./log/system_app.log
     volumes:
       - ./data/log:/app/log
     depends_on:
@@ -24,7 +25,8 @@ services:
     environment:
       - KAFKA_BROKER=kafka:29092
       - KAFKA_TOPIC=log_processor
-      - LOG_FILE_PATH=./log/sys.log
+      - SIMULATED_LOG_FILE_PATH=./log/sys.log
+      - LOG_FILE_PATH./log/log_collector.log
     volumes:
       - ./data/log:/app/log
     depends_on:
@@ -41,12 +43,19 @@ services:
       dockerfile: Dockerfile
     container_name: log_processor
     environment:
+      - LOG_FILE_PATH./log/log_processor.log
       - DB_DIRECTORY=./db
       - KAFKA_TOPIC=log_processor
       - RABBIT_MQ_QUEUE=error_alert
       - KAFKA_BROKER=kafka:29092
       - RABBIT_MQ_BROKER=rabbitmq:5672
+      - RABBIT_MQ_USER=guest
+      - RABBIT_MQ_PASSWORD=guest
+    ports:
+      - "9999:8090"
     volumes:
+
+      - ./data/log:/app/log
       - ./data/processor_data:/app/data
     depends_on:
       kafka:
@@ -62,8 +71,14 @@ services:
       dockerfile: Dockerfile
     container_name: alert_system
     environment:
+      - LOG_FILE_PATH./log/alert_system.log
       - RABBIT_MQ_QUEUE=error_alert
       - RABBIT_MQ_BROKER=rabbitmq:5672
+      - RABBIT_MQ_USER=guest
+      - RABBIT_MQ_PASSWORD=guest
+
+    volumes:
+      - ./data/log:/app/log
     depends_on:
       rabbitmq:
         condition: service_healthy

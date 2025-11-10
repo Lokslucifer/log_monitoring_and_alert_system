@@ -1,10 +1,8 @@
 package Service
 
 import (
-	"fmt"
 	"log"
 	"os"
-	"time"
 )
 
 // Logger struct to encapsulate log behavior
@@ -34,13 +32,13 @@ func NewLogger(logFile string) (*Logger, error) {
 // Info logs general information
 func (l *Logger) Info(message string) {
 	l.infoLogger.Println(message)
-	fmt.Printf("[%s] INFO: %s\n", time.Now().Format(time.RFC3339), message)
+
 }
 
 // Error logs errors
 func (l *Logger) Error(err error) {
 	l.errorLogger.Println(err)
-	fmt.Printf("[%s] ERROR: %v\n", time.Now().Format(time.RFC3339), err)
+
 }
 
 // Close closes the log file

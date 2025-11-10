@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"log_processor/internal/models"
+	"log"
 
 	"github.com/streadway/amqp"
 )
@@ -25,7 +26,6 @@ func (r *RabbitMQAlertPublisher) PublishLog(logEntry models.LogEntry) error {
 		logEntry.SourceFile,
 		logEntry.LineNumber,
 	)
-	fmt.Println(logMsg)
 
 	err := r.ch.Publish(
 		"",        // exchange
@@ -55,15 +55,19 @@ func NewRabbitMQAlertPublisher(queueName string) (AlertPublisher, error) {
 	user := os.Getenv("RABBIT_MQ_USER")
 	password := os.Getenv("RABBIT_MQ_PASSWORD")
 
+
 	if user == "" {
-		user = "guest"
+		log.Fatal("RABBIT_MQ_USER is not set in environment")
 	}
+
 	if password == "" {
-		password = "guest"
+		log.Fatal("RABBIT_MQ_PASSWORD is not set in environment")
 	}
+
 	if broker == "" {
-		broker = "localhost:5672"
+		log.Fatal("RABBIT_MQ_BROKER is not set in environment")
 	}
+
 
 	// Connect to RabbitMQ
 	url := fmt.Sprintf("amqp://%s:%s@%s/", user, password, broker)

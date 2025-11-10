@@ -41,13 +41,15 @@ This project simulates a production-grade log monitoring pipeline:
 - Parses and classifies logs (regex/JSON-based).
 - Stores parsed logs in **PostgreSQL** or **SQLite**.
 - Forwards critical logs to **RabbitMQ** for alerting.
+- Gin Http server expose the logs via port 8090 for analysis purpose.
 
 ### 3. Alert System
 - Listens to alerts from **RabbitMQ**.
 - Sends notifications to **Slack**, **Email**, or any configured channel.
 - Supports message filtering, rate limiting, and retries.
+- Set SLACK_WEB_HOOK url in .env file in alert system
 
 ---
 
-## 🧱 Project Structure
+
 

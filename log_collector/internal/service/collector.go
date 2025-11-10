@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 	"log_collector/internal/log_streamer"
+	"log"
 )
 
 type LogCollector struct {
@@ -34,7 +35,7 @@ func (lc *LogCollector) StartLogCollector() {
 				if(errors.Is(err,Customerrors.FileRotatedError)){
 					continue
 				}else{
-					fmt.Println("Tailer error:", err)
+					log.Println("Tailer error:", err)
                 	lc.StopLogCollector()
 					return
 				}
@@ -47,7 +48,7 @@ func (lc *LogCollector) StartLogCollector() {
 	for line:=range lc.lines{
 		err:=lc.sender.SendLog(line)
 		if(err!=nil){
-			fmt.Println(err)
+			log.Println(err)
 			time.Sleep(500*time.Millisecond)
 		}	
 	}
@@ -83,7 +84,7 @@ func (lc *LogCollector) Watcher() error {
 		select{
 		case<-lc.stop:
 			close(lc.rotated)
-			fmt.Println("Stoping File Watcher")
+			log.Println("Stoping File Watcher")
 			return nil
 		
 		default:
@@ -123,7 +124,7 @@ func (lc *LogCollector) Tailer()error {
 		select {
 		case<-lc.stop:
 			close(lc.lines)
-			fmt.Println("Stopping Tailer")
+			log.Println("Stopping Tailer")
 			return nil
 		
 		case<-lc.rotated:
